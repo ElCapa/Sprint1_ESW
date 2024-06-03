@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "332246",
+    "database": "SRA",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "332246",
+    "database": "MRA_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "s14aicode_user",
+    "password": "QHVXGicJNuIvSSXCquusx3RLpyYkCra0",
+    "host": "dpg-cpatjgu3e1ms739vnm9g-a",
+    "database": "s14aicode",
+    "dialectOptions": {
+      "ssl": true
+    },
+    "dialect": "postgres"
+  }
+}

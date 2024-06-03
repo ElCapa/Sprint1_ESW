@@ -46,25 +46,24 @@ exports.atualizarSensor = async (req, res) =>{
       sensor.tipo = tipo;
       
       await sensor.save(); 
-      res.json(sensor); 
+      res.status(200).json(sensor);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
 exports.excluirSensor = async (req, res) => {
-    try {
-      const { id } = req.params;
-      
-      const sensor = await Sensor.findByPk(id);
-      if (!sensor) {
-        return res.status(404).json({ message: 'Sensor não encontrado' });
-      }
-  
-      await sensor.destroy(); 
-      res.json({ message: 'Sensor excluído com sucesso' });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+  try {
+    const { id } = req.params;
+    const sensor = await Sensor.findByPk(id);
+    if (sensor) {
+      await sensor.destroy();
+      res.status(204).json({ message: 'Sensor removido com sucesso.' });
+    } else {
+      res.status(404).json({ message: 'Sensor não encontrado' });
     }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
   }
   

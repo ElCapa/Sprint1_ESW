@@ -38,11 +38,13 @@ exports.obterNotificacaoPorId = async (req, res) => {
 exports.atualizarNotificacao = async (req, res) => {
   try {
     const { id } = req.params;
-    const { mensagem, dataHora, sensorId } = req.body;
+    const { type, message, dateHora, sensorId } = req.body;
+    console.log(`Atualizando notificação ${id} com dados:`, req.body);
     const notificacao = await Notificacao.findByPk(id);
     if (notificacao) {
-      notificacao.mensagem = mensagem;
-      notificacao.dataHora = dataHora;
+      notificacao.type = type;
+      notificacao.message = message;
+      notificacao.dateHora = dateHora;
       notificacao.sensorId = sensorId;
       await notificacao.save();
       res.status(200).json(notificacao);
@@ -50,9 +52,12 @@ exports.atualizarNotificacao = async (req, res) => {
       res.status(404).json({ message: 'Notificação não encontrada' });
     }
   } catch (error) {
+    console.error('Erro ao atualizar notificação:', error);
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+
 
 exports.deletarNotificacao = async (req, res) => {
   try {
