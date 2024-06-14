@@ -6,6 +6,8 @@ const conexaoDBConfig = require("./config/config.json").development;
 const notificacaoRoutes = require('./routes/notificacaoRoutes');
 const configuracaoRoutes = require('./routes/configuracaoRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const mongoDB = require('./util/db');
+const aut = require('./routes/autRoutes');
 
 const sequelize = new Sequelize(conexaoDBConfig);
 app.use(express.json());
@@ -14,6 +16,7 @@ app.use(sensorRoutes);
 app.use(notificacaoRoutes);
 app.use(configuracaoRoutes);
 app.use(usuarioRoutes);
+app.use(aut);
 
 if (require.main === module) {
   sequelize.authenticate()
@@ -28,4 +31,5 @@ if (require.main === module) {
     });
 }
 
+mongoDB();
 module.exports = app; 
