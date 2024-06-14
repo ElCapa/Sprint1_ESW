@@ -44,9 +44,150 @@ Este projeto visa criar uma aplicação para monitorar e controlar o sistema de 
 
 ## Testando no Postman
 
-- Certifique-se de ter todas as rotas implementadas no seu servidor.
-- Inicie seu servidor Node.js.
-- Abra o Postman e teste as rotas conforme descrito acima.
+Rota: GET /sensores
 
+- Descrição: Obter todos os sensores.
+- URL: http://localhost:8000/sensores
+- Resposta:
+  [
+    {
+      "id": 1,
+      "nome": "DHT11",
+      "tipo": "Sensor Humidade do solo",
+      "createdAt": "2024-05-20T12:00:00.000Z",
+      "updatedAt": "2024-05-20T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "nome": "LM35",
+      "tipo": "Sensor Temperatura",
+      "createdAt": "2024-05-20T12:05:00.000Z",
+      "updatedAt": "2024-05-20T12:05:00.000Z"
+    }
+  ]
+
+Rota: POST /sensores
+
+- Descrição: Cria um novo sensor.
+- URL: http://localhost:8000/sensores
+- Corpo da Requisição:
+  {
+    "nome": "DHT11",
+    "tipo": "Sensor Humidade do solo"
+  }
+- Resposta:
+  {
+    "id": 1,
+    "nome": "DHT11",
+    "tipo": "Sensor Humidade do solo",
+    "createdAt": "2024-05-20T12:10:00.000Z",
+    "updatedAt": "2024-05-20T12:10:00.000Z"
+  }
+
+Rota: DELETE /sensores/:id
+
+- Descrição: Eliminar sensor pelo ID.
+- URL: http://localhost:8000/sensores/1
+- Resposta:
+{
+    "message": "Sensor excluído com sucesso"
+}
+
+Rota: PUT /sensores/:id
+
+- Descrição: Atualiza um sensor existente pelo ID.
+- URL: http://localhost:8000/sensores/1
+- Corpo da Requisição:
+  {
+    "nome": "textUpdate",
+    "tipo": "SensortextUpdate"
+  }
+- Resposta:
+  {
+    "id": 1,
+    "nome": "textUpdate",
+    "tipo": "SensortextUpdate",
+    "createdAt": "2024-05-20T12:05:00.000Z",
+    "updatedAt": "2024-05-20T12:20:00.000Z"
+  }
+
+### Configurações
+
+Rota: GET /configuracoes
+
+- Descrição: Obtém a lista de todas as configurações.
+- URL: http://localhost:8000/configuracoes
+- Resposta:
+  [
+    {
+      "id": 1,
+      "parametro": "900",
+      "valor": "500",
+      "sensorId": 3,
+      "createdAt": "2024-05-21T14:19:53.270Z",
+      "updatedAt": "2024-05-21T14:19:53.270Z"
+    }
+  ]
+
+Rota: POST /configuracoes
+
+- Descrição: Cria uma nova configuração.
+- URL: http://localhost:8000/configuracoes
+- Corpo da Requisição:
+  {
+    "parametro": "900",
+    "valor": "500",
+    "sensorId": 3
+  }
+- Resposta:
+  {
+    "id": 1,
+    "parametro": "900",
+    "valor": "500",
+    "sensorId": 3,
+    "createdAt": "2024-05-21T14:19:53.270Z",
+    "updatedAt": "2024-05-21T14:19:53.270Z"
+  }
+
+Rota: GET /configuracoes/:id
+
+- Descrição: Obtém uma configuração pelo ID.
+- URL: http://localhost:8000/configuracoes/1
+- Método HTTP: GET
+- Resposta:
+  {
+    "id": 1,
+    "parametro": "900",
+    "valor": "500",
+    "sensorId": 3,
+    "createdAt": "2024-05-21T14:19:53.270Z",
+    "updatedAt": "2024-05-21T14:19:53.270Z"
+  }
+
+Rota: PUT /configuracoes/:id
+
+- Descrição: Atualiza uma configuração existente pelo ID.
+- URL: http://localhost:8000/configuracoes/1
+- Corpo da Requisição:
+  {
+    "parametro": "updated_parametro",
+    "valor": "updated_valor",
+    "sensorId": 3
+  }
+- Resposta:
+  {
+    "id": 1,
+    "parametro": "updated_parametro",
+    "valor": "updated_valor",
+    "sensorId": 3,
+    "createdAt": "2024-05-21T14:19:53.270Z",
+    "updatedAt": "2024-05-21T14:30:00.000Z"
+  }
+
+Rota: DELETE /configuracoes/:id
+
+- Descrição: Exclui uma configuração pelo ID.
+- URL: http://localhost:8000/configuracoes/1
+- Resposta:
 
 
